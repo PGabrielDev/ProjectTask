@@ -1,0 +1,17 @@
+# Pastas de Compilação
+bin/
+obj/
+
+# Pasta de Publicação
+publish/
+
+# Pasta de Logs
+logs/
+
+# Pasta de Cobertura de Código (opcional, se você estiver usando ferramentas de cobertura de código)
+coverage/
+
+# ides
+.vs
+.idea
+.vscode
