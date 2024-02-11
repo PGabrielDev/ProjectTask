@@ -25,7 +25,7 @@ namespace ProjectsTasks.Infrastruct.Database.entities
         public virtual User? Assined { get; set; }
         public int? AssinedId { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; } = [];
 
         [Required]
         public DateTime createdAt { get; set; }

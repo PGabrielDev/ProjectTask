@@ -11,11 +11,15 @@ namespace ProjectsTasks.Application.Services
         private readonly CreateUserUseCase CreateUserUseCase;
         private readonly GetDefaultsRolesUseCase GetDefaultsRolesUseCase;
         private readonly UpdateUserUseCase UpdateUserUseCase;
-        public UserService(CreateUserUseCase createUserUseCase, GetDefaultsRolesUseCase getDefaultsRolesUseCase, UpdateUserUseCase updateUserUseCase)
+        private readonly GetUserByEmailUseCase GetUserByEmailUseCase;
+        private readonly JWTUtils JWTUtils;
+        public UserService(CreateUserUseCase createUserUseCase, GetDefaultsRolesUseCase getDefaultsRolesUseCase, UpdateUserUseCase updateUserUseCase, GetUserByEmailUseCase getUserByEmailUseCase, JWTUtils jWTUtils)
         {
             CreateUserUseCase = createUserUseCase;
             GetDefaultsRolesUseCase = getDefaultsRolesUseCase;
             UpdateUserUseCase = updateUserUseCase;
+            GetUserByEmailUseCase = getUserByEmailUseCase;
+            JWTUtils = jWTUtils;
         }
 
         public CreateUserOutput CreateUser(CreateUserInput input)
@@ -34,6 +38,22 @@ namespace ProjectsTasks.Application.Services
                );
             
            return output;
+        }
+
+        public LoginOutPut Login(LoginInput input)
+        {
+            var userLogin = GetUserByEmailUseCase.Execute(input.email);
+            if (userLogin == null)
+            {
+                return null;
+            }
+            if (!PasswordUtils.VerifyPw(input.password, userLogin.password))
+            {
+                return null;
+            }
+            var token = JWTUtils.GenerateToken(Mappers.FromUserLoign(userLogin)); 
+            var response = LoginOutPut.With(userLogin.email, token);
+            return response;
         }
     }
 }

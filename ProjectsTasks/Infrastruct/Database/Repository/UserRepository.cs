@@ -29,7 +29,10 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
 
         public User? GetByEmail(string email)
         {
-            return _context.Users.Include(us => us.Roles).First(us => us.Email == email);
+            return _context.Users
+                .Include(us => us.Roles)
+                .ThenInclude(r => r.Role)
+                .First(us => us.Email == email);
         }
 
         public User? GetById(int id)
@@ -47,10 +50,6 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
 
         public User Update(User entity)
         {
-            
-
-            
-
             var user = _context.Users.FirstOrDefault(us => us.Id == entity.Id);
             if (user == null)
             {
