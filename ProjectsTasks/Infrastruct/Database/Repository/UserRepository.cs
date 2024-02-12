@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Diagnostics;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ProjectsTasks.Application.User;
 using ProjectsTasks.Infrastruct.Database.DataAccess;
 using ProjectsTasks.Infrastruct.Database.entities;
@@ -19,7 +18,12 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
 
         public void Delete(int id, User entity)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+            }
         }
 
         public ICollection<User> GetAll()
@@ -64,7 +68,5 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
             _context.SaveChanges();
             return user;
         }
-
-
     }
 }

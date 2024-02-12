@@ -4,7 +4,7 @@ using ProjectsTasks.Infrastruct.Database.entities;
 
 namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
 {
-    public interface ITaskRepository : CrudRepository<entities.Task>
+    public interface ITaskRepository : BasicRepository<entities.Task>, IUpdate<entities.TaskDefinition> , IDelete<entities.Task>
     {
         
     }

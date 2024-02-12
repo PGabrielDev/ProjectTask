@@ -1,4 +1,9 @@
-﻿using ProjectsTasks.Infrastruct.Database.DataAccess;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
+using ProjectsTasks.Infrastruct.Database.DataAccess;
+using ProjectsTasks.Infrastruct.Database.entities;
+using System.Data;
+using System.Threading.Tasks;
 
 namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
 {
@@ -13,29 +18,65 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
 
         public void Delete(int id, entities.Task entity)
         {
-            throw new NotImplementedException();
+            var result = _context.Tasks.FirstOrDefault(t => t.Id == id);
+            if (result != null)
+            {
+                _context.Tasks.Remove(result);
+                _context.SaveChanges();
+            }
         }
 
         public ICollection<entities.Task> GetAll()
         {
-            throw new NotImplementedException();
+            var result = _context.Tasks
+                .Include(t => t.TaskDefinitions)
+                .ThenInclude(tf => tf.Comments)
+                .ToList();
+            return result;
         }
 
         public entities.Task? GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Tasks
+                .Include(t => t.TaskDefinitions)
+                .ThenInclude(tf => tf.Comments)
+                .FirstOrDefault(t => t.Id == id);
+            return result;
         }
 
         public entities.Task Save(entities.Task value)
         {
+            var project = _context.Projects
+                .Include(p => p.Tasks)
+                .FirstOrDefault(p => p.Id == value.ProjectId);
+
+            if (project.Tasks.Count() >= 20)
+            {
+                throw new Exceptions.LimitTaskException();
+            }
+
             _context.Tasks.Add(value);
             _context.SaveChanges();
             return value;
         }
 
-        public entities.Task Update(entities.Task entity)
+
+        TaskDefinition IUpdate<TaskDefinition>.Update(TaskDefinition task)
         {
-            throw new NotImplementedException();
+            var result = _context.Tasks
+                .Include(t => t.TaskDefinitions)
+                .ThenInclude(tf => tf.Comments)
+                .FirstOrDefault(t => t.Id == task.TaskId);
+            if (result == null)
+            {
+                return task;
+            }
+
+            result.UpdatedAt = DateTime.Now.ToUniversalTime();
+            _context.Tasks.Update(result);
+            _context.TaskDefinitions.Add(task);
+            _context.SaveChanges();
+            return task;
         }
     }
 }
