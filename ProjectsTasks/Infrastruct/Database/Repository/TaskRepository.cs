@@ -21,7 +21,8 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
             var result = _context.Tasks.FirstOrDefault(t => t.Id == id);
             if (result != null)
             {
-                _context.Tasks.Remove(result);
+                _context.Entry(result).State = EntityState.Detached;
+                _context.Tasks.Remove(entity);
                 _context.SaveChanges();
             }
         }
@@ -35,15 +36,27 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
             return result;
         }
 
+        public ICollection<entities.Task> GetAllTask30Days()
+        {
+            var result = _context.Tasks
+            .Include(t => t.TaskDefinitions)
+            .ThenInclude(t => t.Assined)
+            .Where(t => t.TaskDefinitions.Any(td => td.Stats == Status.DONE && td.createdAt >= DateTime.Now.ToUniversalTime().AddDays(-30) && td.AssinedId != null && td.AssinedId != 0))
+            .ToList();
+            return result;
+        }
+
         public entities.Task? GetById(int id)
         {
             var result = _context.Tasks
                 .Include(t => t.TaskDefinitions)
-                .ThenInclude(tf => tf.Comments)
+                    .ThenInclude(t => t.Assined)
+                .Include(t => t.TaskDefinitions)
+                    .ThenInclude(tf => tf.Comments)
+
                 .FirstOrDefault(t => t.Id == id);
             return result;
         }
-
         public entities.Task Save(entities.Task value)
         {
             var project = _context.Projects
@@ -59,7 +72,6 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
             _context.SaveChanges();
             return value;
         }
-
 
         TaskDefinition IUpdate<TaskDefinition>.Update(TaskDefinition task)
         {
@@ -78,5 +90,6 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
             _context.SaveChanges();
             return task;
         }
+
     }
 }

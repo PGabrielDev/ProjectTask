@@ -6,11 +6,27 @@ using ProjectsTasks.Infrastruct.Database.entities;
 using ProjectsTasks.utils;
 using System.Data;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace ProjectsTasks.mappers
 {
     public class Mappers
     {
+        public static Dictionary<Status, string> STATUS = new Dictionary<Status, string>
+        {
+            { Status.BACKLOG, "BACKLOG" },
+            { Status.INPROGRESS, "EM ANDAMENTO" },
+            { Status.DONE, "FINALIZADO" }
+        };
+
+        public static Dictionary<Priority, string> PRIORITY = new Dictionary<Priority, string>
+        {
+            { Priority.LOW, "BAIXA" },
+            { Priority.MEDIUM, "MEDIA"},
+            { Priority.HIGH, "ALTA" }
+        };
+
+
         public static User FromCreateUserInput(CreateUser input)
         {
             var user = new User
@@ -117,7 +133,7 @@ namespace ProjectsTasks.mappers
                 TaskDefinitions = new List<TaskDefinition>() {
                     new TaskDefinition
                     {
-                        ChangeDescription = "task inciada",
+                        ChangeDescription = $"Criação de task; criada por: {taskInput.email} em {DateTime.Now}",
                         Comments = [],
                         createdAt = DateTime.Now.ToUniversalTime(),
                         Name = taskInput.name,
@@ -127,5 +143,97 @@ namespace ProjectsTasks.mappers
                 },
             };
         }
+
+        public static TaskDetailOutput FromTaskDetails(Infrastruct.Database.entities.Task task)
+        {
+            var lastTask = task.TaskDefinitions.LastOrDefault();
+            return TaskDetailOutput.With(
+                task.Id,
+                lastTask.Name,
+                lastTask.Description,
+                task.ProjectId,
+                task.CreatedAt,
+                task.UpdatedAt,
+                STATUS[lastTask.Stats],
+                PRIORITY[task.Priority],
+                (lastTask.Assined != null) ? lastTask.Assined.Email : "",
+                 task.TaskDefinitions.Select(tf =>
+                 {
+                     string alter;
+                     string by;
+                     var alterby = tf.ChangeDescription.Split(";");
+                     alter = alterby[0];
+                     by = alterby[1];
+                     return HistoricOutput.With(alter, by);
+                 }).ToList()
+
+                );
+        }
+
+        public static TaskApp FromTaskComplete(Infrastruct.Database.entities.Task task)
+        {
+            return TaskApp.With(
+                task.Id,
+                (int)task.Priority,
+                task.CreatedAt,
+                task.UpdatedAt,
+                task.TaskDefinitions.Select(tf => TaskDefinitionApp.With(
+                    tf.Id,
+                    tf.Name,
+                    tf.Description,
+                    tf.TaskId,
+                    (int)tf.Stats,
+                    tf.createdAt,
+                    tf.Comments.Select(c => CommentsApp.With(
+                        c.Id,
+                        c.Text,
+                        c.Userid, 
+                        c.TaskDefinitionId,
+                        c.CreatedAt)).ToList(),
+                    tf.ChangeDescription
+
+                    )).ToList(),
+                task.TaskDefinitions.Select(tf =>
+                {
+                    string alter;
+                    string by;
+                    var alterby = tf.ChangeDescription.Split(";");
+                    alter = alterby[0];
+                    by = alterby[1];
+                    return HistoricOutput.With(alter, by);
+                }).ToList());
+        }
+
+        public static Comment FromAddComment(AddComment comment)
+        {
+            return new Comment
+            {
+                CreatedAt = DateTime.Now.ToUniversalTime(),
+                Text = comment.comment,
+                Userid = comment.userId
+            };
+        }
+
+        public static string CreateChangeDescription(string email,string alter, string of, string forr)
+        {
+            return $"{alter} de {of} para {forr};Alterado por: {email} em: {DateTime.Now}";
+        }
+
+        public static ProjectOutput FromProject(Project project)
+        {
+            return new ProjectOutput(
+                project.Id,
+                project.Name,
+                project.Description,
+                project.CreatedAt,
+                project.Tasks.Select(t =>
+                {
+                  var lastTask  = t.TaskDefinitions.LastOrDefault();
+                  return SimpleTask.With(lastTask.Id, lastTask.Name, lastTask.Description, t.CreatedAt, t.UpdatedAt, STATUS[lastTask.Stats], PRIORITY[t.Priority] ,(lastTask.Assined != null) ? lastTask.Assined.Email : "");
+                }).ToList()
+                );
+                
+        }
+
     }
 }

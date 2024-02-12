@@ -26,6 +26,5 @@ namespace ProjectsTasks.Infrastruct.Database.entities
         [Required]
         public DateTime CreatedAt { get; set; }
         
-
     }
 }

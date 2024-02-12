@@ -7,17 +7,19 @@ namespace ProjectsTasks.Application.Task
          int Priority,
          DateTime CreatedAt,
          DateTime UpdatedAt,
-
-         ICollection<TaskDefinitionApp> TaskDefinitions)
+         ICollection<TaskDefinitionApp> TaskDefinitions,
+         ICollection<HistoricOutput> historic
+         )
     {
          public static TaskApp With(int Id,
          int Priority,
          DateTime CreatedAt,
          DateTime UpdatedAt,
 
-         ICollection<TaskDefinitionApp> TaskDefinitions)
+         ICollection<TaskDefinitionApp> TaskDefinitions,
+         ICollection<HistoricOutput> historic)
         {
-            return new TaskApp(Id, Priority, CreatedAt, UpdatedAt, TaskDefinitions);
+            return new TaskApp(Id, Priority, CreatedAt, UpdatedAt, TaskDefinitions, historic);
         }
     }
 }

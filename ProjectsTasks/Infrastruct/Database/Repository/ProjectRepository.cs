@@ -25,24 +25,27 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
 
             if (project != null)
             {
-                if (project.Tasks != null)
+                if (project.Tasks != null && project.Tasks.Count() > 0)
                 {
                     var tasks = project.Tasks;
-                    string[] completed = [];
+                    var completed = new List<String>();
                     foreach (var task in tasks)
                     {
                         var tf = task.TaskDefinitions.LastOrDefault();
                         if ((int)tf.Stats != 2)
                         {
-                            completed.Append($"Tarefa: ${tf.Name}");
+                            completed.Add($"Tarefa: ${tf.Name}");
                         }
                     }
-                    if (completed.Length > 0)
+                    if (completed.Count() > 0)
                     {
                         throw new IncompleteProjectException(string.Join(";", completed));
                     }
                 }
+
+                _context.Entry(project).State = EntityState.Detached;
                 _context.Projects.Remove(entity);
+                _context.SaveChanges();
             }
         }
 
@@ -51,7 +54,7 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
             return _context.Projects
                 .Include(p => p.Tasks)
                 .ThenInclude(t => t.TaskDefinitions)
-                .ThenInclude(tf => tf.Comments)
+                .ThenInclude(tf => tf.Assined)
                 .ToList();
         }
 
@@ -60,7 +63,7 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
             return _context.Projects
                 .Include(p => p.Tasks)
                 .ThenInclude(t => t.TaskDefinitions)
-                .ThenInclude(tf => tf.Comments)
+                .ThenInclude(tf => tf.Assined)
                 .Where(p => p.AuthorId == id)
                 .ToList();
         }

@@ -8,24 +8,49 @@ namespace ProjectsTasks.Application.Services
 {
     public class ProjectService : IProjectService
     {
-        private readonly IProjectRepository projectRepository;
         private readonly GetUserByEmailUseCase getUserByEmailUseCase;
-        public ProjectService(IProjectRepository projectRepository, GetUserByEmailUseCase getUserByEmailUseCase)
+        private readonly DeleteProjectUseCase deleteProjectUseCase;
+        private readonly CreateProjectUseCase createProjectUseCase;
+        private readonly GetAllProjectsUseCase getAllProjectsUseCase;
+        private readonly GetAllProjectsByUserUseCase getAllProjectsByUserUseCase;
+        public ProjectService(
+            GetUserByEmailUseCase getUserByEmailUseCase,
+            DeleteProjectUseCase deleteProjectUseCase,
+            CreateProjectUseCase createProjectUseCase, 
+            GetAllProjectsUseCase getAllProjectsUseCase,
+            GetAllProjectsByUserUseCase getAllProjectsByUserUseCase
+            )
         {
-            this.projectRepository = projectRepository;
             this.getUserByEmailUseCase = getUserByEmailUseCase;
+            this.deleteProjectUseCase = deleteProjectUseCase;
+            this.createProjectUseCase = createProjectUseCase;
+            this.getAllProjectsUseCase = getAllProjectsUseCase;
+            this.getAllProjectsByUserUseCase = getAllProjectsByUserUseCase;
         }
 
-        public void CreateProject(CreateProjectInput input)
+        public void CreateProject(CreateProjectInput input, string email)
         {
-            var user = getUserByEmailUseCase.Execute(input.email);
+            var user = getUserByEmailUseCase.Execute(email);
 
             var project = Project.CreateProject.With(input.ProjectName, input.Description, user.id);
             
-            var projectEntity = Mappers.FromProjectCreate(project);
+            createProjectUseCase.Execute(project);
             
-            projectRepository.Save(projectEntity);
-            
+        }
+
+        public void DeleteProject(int projectId)
+        {
+            deleteProjectUseCase.Execute(projectId);
+        }
+
+        public ICollection<ProjectOutput> GetProjects()
+        {
+            return getAllProjectsUseCase.Execute();
+        }
+
+        public ICollection<ProjectOutput> GetProjectsByUserID(int userId)
+        {
+            return getAllProjectsByUserUseCase.Execute(userId);
         }
     }
 }

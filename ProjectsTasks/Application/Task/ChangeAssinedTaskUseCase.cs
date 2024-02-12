@@ -22,7 +22,7 @@ namespace ProjectsTasks.Application.Task
                 : $"User: {input.userId} atribuiu a tarefa a {input.assinedId}; Alterado por {input.email} em {DateTime.Now}";
             var newTaskDefinition = new TaskDefinition
             {
-                Assined = taskDefinition.Assined,
+      
                 AssinedId = input.assinedId,
                 ChangeDescription = changeDescription,
                 Comments = taskDefinition.Comments.Select(c => new Comment { CreatedAt = c.CreatedAt, TaskDefinitionId = 0, Text = c.Text, Userid = c.Userid }).ToList(),

@@ -6,6 +6,6 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
 {
     public interface ITaskRepository : BasicRepository<entities.Task>, IUpdate<entities.TaskDefinition> , IDelete<entities.Task>
     {
-        
+        public ICollection<entities.Task> GetAllTask30Days();
     }
 }

@@ -71,8 +71,6 @@ builder.Services.AddSwaggerGen(options => {
     });
 });
 builder.Services.AddAuthorization();
-
-
 builder.Services.AddScoped<CreateUserUseCase>();
 builder.Services.AddScoped<CreateRoleUserCase>();
 builder.Services.AddScoped<GetDefaultsRolesUseCase>();
@@ -80,6 +78,18 @@ builder.Services.AddScoped<UpdateUserUseCase>();
 builder.Services.AddScoped<CreateProjectUseCase>();
 builder.Services.AddScoped<GetUserByEmailUseCase>();
 builder.Services.AddScoped<CreateTaskUseCase>();
+builder.Services.AddScoped<AddCommentUseCase>();
+builder.Services.AddScoped<GetTaskByIdUseCase>();
+builder.Services.AddScoped<ChangeStatusTaskUseCase>();
+builder.Services.AddScoped<ChangeDescriptionUseCase>();
+builder.Services.AddScoped<ChangeAssinedTaskUseCase>();
+builder.Services.AddScoped<ChangeNameUseCase>();
+builder.Services.AddScoped<RemoveTaskUseCase>();
+builder.Services.AddScoped<GetReport30DaysUseCase>();
+builder.Services.AddScoped<DeleteProjectUseCase>();
+builder.Services.AddScoped<GetAllProjectsByUserUseCase>();
+builder.Services.AddScoped<GetAllProjectsUseCase>();
+builder.Services.AddScoped<GetTaskSimpleDetailsById>();
 builder.Services.AddTransient<JWTUtils>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
@@ -88,7 +98,6 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
-
 
 var app = builder.Build();
 var context = new AppDbContext(
@@ -106,6 +115,20 @@ if (roles.Count == 0)
         new Role{Name = "USER" },
     };
     context.Roles.AddRange(roless);
+    context.SaveChanges();
+}
+var email = "eclipse@teste.com";
+var user = context.Users.FirstOrDefault(u => u.Email == email);
+if (user == null)
+{
+    user = new User
+    {
+        Name = "eclipse",
+        Email = email,
+        Password = PasswordUtils.HashPw("123321"),
+        Roles = roles.Select(r => new UserRole { RoleId = r.Id }).ToList(),
+    };
+    context.Users.Add(user);
     context.SaveChanges();
 }
 

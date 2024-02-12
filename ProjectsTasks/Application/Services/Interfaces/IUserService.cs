@@ -8,5 +8,6 @@ namespace ProjectsTasks.Application.Services.Interfaces
         public CreateUserOutput CreateUser(CreateUserInput input);
 
         public LoginOutPut Login(LoginInput input);
+
     }
 }
