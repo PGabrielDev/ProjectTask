@@ -1,7 +1,8 @@
-﻿using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
+﻿using ProjectsTasks.Application.Role.DTOs;
+using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
-namespace ProjectsTasks.Application.Role
+namespace ProjectsTasks.Application.Role.UseCases
 {
     public class GetDefaultsRolesUseCase : NullaryUseCase<ICollection<RoleOutput>>
     {
