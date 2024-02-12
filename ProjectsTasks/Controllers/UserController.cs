@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ProjectsTasks.Application.Services.Interfaces;
-using ProjectsTasks.Application.User;
+using ProjectsTasks.Application.User.DTOs;
 
 namespace ProjectsTasks.Controllers
 {

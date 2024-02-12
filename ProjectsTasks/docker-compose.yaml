@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    image: eclipse/app-test
+    ports:
+      - "8000:8080"
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings:DefaultConnection=Host=postgres;Database=postgres;Username=eclipse;Password=eclipse123
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: eclipse
+      POSTGRES_PASSWORD: eclipse123
+    ports:
+      - "5432:5432"
+

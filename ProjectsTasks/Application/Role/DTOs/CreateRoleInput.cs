@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.Role
+﻿namespace ProjectsTasks.Application.Role.DTOs
 {
     public record CreateRoleInput(string Name)
     {

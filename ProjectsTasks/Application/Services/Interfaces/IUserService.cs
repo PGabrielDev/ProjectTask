@@ -1,4 +1,4 @@
-﻿using ProjectsTasks.Application.User;
+﻿using ProjectsTasks.Application.User.DTOs;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 
 namespace ProjectsTasks.Application.Services.Interfaces

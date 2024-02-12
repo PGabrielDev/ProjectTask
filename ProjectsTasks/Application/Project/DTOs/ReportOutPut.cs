@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.Project
+﻿namespace ProjectsTasks.Application.Project.DTOs
 {
     public record ReportOutPut(string user, double avarege)
     {

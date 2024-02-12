@@ -1,7 +1,7 @@
-﻿using ProjectsTasks.Application.Project;
-using ProjectsTasks.Application.Role;
-using ProjectsTasks.Application.Task;
-using ProjectsTasks.Application.User;
+﻿using ProjectsTasks.Application.Project.DTOs;
+using ProjectsTasks.Application.Role.DTOs;
+using ProjectsTasks.Application.Task.DTOs;
+using ProjectsTasks.Application.User.DTOs;
 using ProjectsTasks.Infrastruct.Database.entities;
 using ProjectsTasks.utils;
 using System.Data;

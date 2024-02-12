@@ -1,7 +1,7 @@
 ﻿using Npgsql.TypeMapping;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.UseCases
 {
     public class GetTaskDetailsUseCase : UseCase<int, string>
     {

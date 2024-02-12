@@ -1,6 +1,7 @@
-﻿using ProjectsTasks.Application.Role;
+﻿using ProjectsTasks.Application.Role.UseCases;
 using ProjectsTasks.Application.Services.Interfaces;
-using ProjectsTasks.Application.User;
+using ProjectsTasks.Application.User.DTOs;
+using ProjectsTasks.Application.User.UseCases;
 using ProjectsTasks.mappers;
 using ProjectsTasks.utils;
 
@@ -26,7 +27,7 @@ namespace ProjectsTasks.Application.Services
         { 
            
            var hashPw = PasswordUtils.HashPw(input.Password);
-           var newUser = User.CreateUser.With(
+           var newUser = User.DTOs.CreateUser.With(
                input.Name,
                input.Email,
                hashPw,
@@ -34,7 +35,7 @@ namespace ProjectsTasks.Application.Services
            );
            var output = CreateUserUseCase.Execute(newUser); 
            output = UpdateUserUseCase.Execute(
-                User.UpdateUser.With(output.Id,output.Name, output.Email, newUser.Password)
+                UpdateUser.With(output.Id,output.Name, output.Email, newUser.Password)
                );
             
            return output;

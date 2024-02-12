@@ -2,23 +2,24 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using ProjectsTasks.Application.Project;
-using ProjectsTasks.Application.Role;
+using ProjectsTasks.Application.Project.UseCases;
+using ProjectsTasks.Application.Role.UseCases;
 using ProjectsTasks.Application.Services;
 using ProjectsTasks.Application.Services.Interfaces;
-using ProjectsTasks.Application.Task;
-using ProjectsTasks.Application.User;
+using ProjectsTasks.Application.Task.DTOs;
+using ProjectsTasks.Application.Task.UseCases;
+using ProjectsTasks.Application.User.UseCases;
 using ProjectsTasks.Infrastruct.Database.DataAccess;
 using ProjectsTasks.Infrastruct.Database.entities;
 using ProjectsTasks.Infrastruct.Database.Repository;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.utils;
+using System.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -98,7 +99,7 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
-
+builder.Services.AddHealthChecks();
 var app = builder.Build();
 var context = new AppDbContext(
     new DbContextOptionsBuilder<AppDbContext>()
@@ -109,14 +110,15 @@ context.Database.Migrate();
 var roles = context.Roles.ToList();
 if (roles.Count == 0)
 {
-    var roless = new List<Role>()
+    roles = new List<Role>()
     {
         new Role{Name = "ADMIN" },
         new Role{Name = "USER" },
     };
-    context.Roles.AddRange(roless);
+    context.Roles.AddRange(roles);
     context.SaveChanges();
 }
+
 var email = "eclipse@teste.com";
 var user = context.Users.FirstOrDefault(u => u.Email == email);
 if (user == null)
@@ -126,9 +128,12 @@ if (user == null)
         Name = "eclipse",
         Email = email,
         Password = PasswordUtils.HashPw("123321"),
-        Roles = roles.Select(r => new UserRole { RoleId = r.Id }).ToList(),
+        
     };
     context.Users.Add(user);
+    context.SaveChanges();
+    user.Roles = roles.Select(r => new UserRole { RoleId = r.Id, userId = user.Id }).ToList();
+    context.Users.Update(user);
     context.SaveChanges();
 }
 
@@ -142,5 +147,5 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseHealthChecks("/health");
 app.Run();

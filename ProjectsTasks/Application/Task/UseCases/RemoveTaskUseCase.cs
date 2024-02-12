@@ -1,6 +1,6 @@
 ﻿using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.UseCases
 {
     public class RemoveTaskUseCase : UnitUseCase<int>
     {
@@ -13,7 +13,7 @@ namespace ProjectsTasks.Application.Task
 
         public void Execute(int input)
         {
-            taskRepository.Delete(input, new Infrastruct.Database.entities.Task {  Id = input });
+            taskRepository.Delete(input, new Infrastruct.Database.entities.Task { Id = input });
         }
     }
 }

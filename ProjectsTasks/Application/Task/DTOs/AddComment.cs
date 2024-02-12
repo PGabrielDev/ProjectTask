@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.Task
+﻿namespace ProjectsTasks.Application.Task.DTOs
 {
     public record AddComment(int projectId, int taskId, string comment, int userId, string email)
     {

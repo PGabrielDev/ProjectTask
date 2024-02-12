@@ -1,8 +1,9 @@
-﻿using ProjectsTasks.Infrastruct.Database.entities;
+﻿using ProjectsTasks.Application.Task.DTOs;
+using ProjectsTasks.Infrastruct.Database.entities;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.UseCases
 {
     public class ChangeStatusTaskUseCase : UnitUseCase<ChangeStatus>
     {
@@ -21,12 +22,12 @@ namespace ProjectsTasks.Application.Task
             {
                 Assined = taskDefinition.Assined,
                 AssinedId = taskDefinition.AssinedId,
-                ChangeDescription = Mappers.CreateChangeDescription(input.email,"Alteracao de Status",taskDefinition.Stats.ToString(),input.status.ToString()),
+                ChangeDescription = Mappers.CreateChangeDescription(input.email, "Alteracao de Status", taskDefinition.Stats.ToString(), input.status.ToString()),
                 Comments = taskDefinition.Comments.Select(c => new Comment { CreatedAt = c.CreatedAt, TaskDefinitionId = 0, Text = c.Text, Userid = c.Userid }).ToList(),
                 createdAt = DateTime.Now.ToUniversalTime(),
                 Description = taskDefinition.Description,
                 Name = taskDefinition.Name,
-                Stats = (Status) input.status,
+                Stats = (Status)input.status,
                 TaskId = taskDefinition.TaskId
             };
             taskRepository.Update(newTaskDefinition);

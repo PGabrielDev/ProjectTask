@@ -1,6 +1,6 @@
-﻿namespace ProjectsTasks.Application.Task
+﻿namespace ProjectsTasks.Application.Task.DTOs
 {
-    public record ChangeDescriptionInput(string  description)
+    public record ChangeDescriptionInput(string description)
     {
         public static ChangeDescriptionInput With(string description)
         {

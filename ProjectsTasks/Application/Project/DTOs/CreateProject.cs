@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.Project
+﻿namespace ProjectsTasks.Application.Project.DTOs
 {
     public record CreateProject(string ProjectName, string Description, int UserId)
     {
@@ -8,4 +8,3 @@
         }
     }
 }
- 

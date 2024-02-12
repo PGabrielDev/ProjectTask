@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.User
+﻿namespace ProjectsTasks.Application.User.DTOs
 {
     public record LoginOutPut(string name, string token)
     {

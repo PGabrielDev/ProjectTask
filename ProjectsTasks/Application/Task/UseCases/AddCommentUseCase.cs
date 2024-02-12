@@ -1,8 +1,9 @@
-﻿using ProjectsTasks.Infrastruct.Database.entities;
+﻿using ProjectsTasks.Application.Task.DTOs;
+using ProjectsTasks.Infrastruct.Database.entities;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.UseCases
 {
     public class AddCommentUseCase : UnitUseCase<AddComment>
     {
@@ -22,14 +23,14 @@ namespace ProjectsTasks.Application.Task
                 Assined = taskDefinition.Assined,
                 AssinedId = taskDefinition.AssinedId,
                 ChangeDescription = $"Comentario Adicionado: {input.comment}; Por: {input.email} em {DateTime.Now}",
-                Comments = taskDefinition.Comments.Select(c => new Comment { CreatedAt = c.CreatedAt, TaskDefinitionId = 0, Text = c.Text, Userid = c.Userid}).ToList(),
+                Comments = taskDefinition.Comments.Select(c => new Comment { CreatedAt = c.CreatedAt, TaskDefinitionId = 0, Text = c.Text, Userid = c.Userid }).ToList(),
                 createdAt = DateTime.Now.ToUniversalTime(),
                 Description = taskDefinition.Description,
                 Name = taskDefinition.Name,
                 Stats = taskDefinition.Stats,
                 TaskId = taskDefinition.TaskId
             };
-            newTaskDefinition.Comments.Add(Mappers.FromAddComment(input) );
+            newTaskDefinition.Comments.Add(Mappers.FromAddComment(input));
             taskRepository.Update(newTaskDefinition);
         }
     }

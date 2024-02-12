@@ -1,7 +1,8 @@
-﻿using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
+﻿using ProjectsTasks.Application.User.DTOs;
+using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
-namespace ProjectsTasks.Application.User
+namespace ProjectsTasks.Application.User.UseCases
 {
     public class CreateUserUseCase : UseCase<CreateUser, CreateUserOutput>
     {

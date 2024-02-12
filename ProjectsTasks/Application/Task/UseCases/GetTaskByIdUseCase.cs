@@ -1,7 +1,8 @@
-﻿using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
+﻿using ProjectsTasks.Application.Task.DTOs;
+using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.UseCases
 {
     public class GetTaskByIdUseCase : UseCase<int, TaskApp>
     {

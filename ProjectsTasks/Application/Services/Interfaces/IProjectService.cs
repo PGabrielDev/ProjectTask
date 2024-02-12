@@ -1,4 +1,4 @@
-﻿using ProjectsTasks.Application.Project;
+﻿using ProjectsTasks.Application.Project.DTOs;
 
 namespace ProjectsTasks.Application.Services.Interfaces
 {

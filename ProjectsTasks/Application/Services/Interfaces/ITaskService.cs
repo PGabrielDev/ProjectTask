@@ -1,5 +1,5 @@
-﻿using ProjectsTasks.Application.Project;
-using ProjectsTasks.Application.Task;
+﻿using ProjectsTasks.Application.Project.DTOs;
+using ProjectsTasks.Application.Task.DTOs;
 
 namespace ProjectsTasks.Application.Services.Interfaces
 {

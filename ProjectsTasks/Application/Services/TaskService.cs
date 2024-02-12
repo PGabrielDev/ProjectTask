@@ -1,7 +1,8 @@
-﻿using ProjectsTasks.Application.Project;
+﻿using ProjectsTasks.Application.Project.DTOs;
 using ProjectsTasks.Application.Services.Interfaces;
-using ProjectsTasks.Application.Task;
-using ProjectsTasks.Application.User;
+using ProjectsTasks.Application.Task.DTOs;
+using ProjectsTasks.Application.Task.UseCases;
+using ProjectsTasks.Application.User.UseCases;
 
 namespace ProjectsTasks.Application.Services
 {
@@ -47,7 +48,7 @@ namespace ProjectsTasks.Application.Services
         public void AddComment(AddCommentInput comment, int projectId, int taskId, string email)
         {
             var user = getUserByEmailUseCase.Execute(email);
-            var commentAdd = Task.AddComment.With(projectId, taskId, comment.comment,user.id, email);
+            var commentAdd = Task.DTOs.AddComment.With(projectId, taskId, comment.comment,user.id, email);
             addCommentUseCase.Execute(commentAdd);
         }
 
@@ -55,18 +56,18 @@ namespace ProjectsTasks.Application.Services
         {
             var user = getUserByEmailUseCase.Execute(email);
 
-            changeAssinedTaskUseCase.Execute(Task.ChangeAssinedTask.With(taskId, input.assinedId, user.id, email));
+            changeAssinedTaskUseCase.Execute(Task.DTOs.ChangeAssinedTask.With(taskId, input.assinedId, user.id, email));
         }
 
         public void ChangeDescription(int taskId, ChangeDescriptionInput input, string email = "")
         {
-            var changeDescription = Task.ChangeDescription.With(input.description, taskId);
+            var changeDescription = Task.DTOs.ChangeDescription.With(input.description, taskId);
             changeDescriptionUseCase.Execute(changeDescription);
         }
 
         public void ChangeNameTask(int taskId, ChangeNameInput changeNameInput , string email = "")
         {
-            var changeName = Task.ChangeName.With(taskId, changeNameInput.name, email);
+            var changeName = ChangeName.With(taskId, changeNameInput.name, email);
             changeNameUseCase.Execute(changeName);
         }
 

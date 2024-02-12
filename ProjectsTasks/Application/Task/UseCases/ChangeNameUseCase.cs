@@ -1,8 +1,9 @@
-﻿using ProjectsTasks.Infrastruct.Database.entities;
+﻿using ProjectsTasks.Application.Task.DTOs;
+using ProjectsTasks.Infrastruct.Database.entities;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.UseCases
 {
     public class ChangeNameUseCase : UnitUseCase<ChangeName>
     {
@@ -21,7 +22,7 @@ namespace ProjectsTasks.Application.Task
             {
                 Assined = taskDefinition.Assined,
                 AssinedId = taskDefinition.AssinedId,
-                ChangeDescription = Mappers.CreateChangeDescription(input.email,"Alteracao de Nome",taskDefinition.Name,input.name),
+                ChangeDescription = Mappers.CreateChangeDescription(input.email, "Alteracao de Nome", taskDefinition.Name, input.name),
                 Comments = taskDefinition.Comments.Select(c => new Comment { CreatedAt = c.CreatedAt, TaskDefinitionId = 0, Text = c.Text, Userid = c.Userid }).ToList(),
                 createdAt = DateTime.Now.ToUniversalTime(),
                 Description = taskDefinition.Description,
@@ -29,7 +30,7 @@ namespace ProjectsTasks.Application.Task
                 Stats = taskDefinition.Stats,
                 TaskId = taskDefinition.TaskId
             };
-            taskRepository.Update(newTaskDefinition);   
+            taskRepository.Update(newTaskDefinition);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.Project
+﻿namespace ProjectsTasks.Application.Project.DTOs
 {
     public record ProjectOutput(int id, string name, string description, DateTime createdAt, ICollection<SimpleTask> tasks)
     {

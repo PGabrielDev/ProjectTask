@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.DTOs
 {
     public record ChangeStatus(int status, int taskId, string email)
     {
@@ -9,5 +9,5 @@ namespace ProjectsTasks.Application.Task
             return new ChangeStatus(status, taskId, email);
         }
     }
-    
+
 }

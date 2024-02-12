@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.Project
+﻿namespace ProjectsTasks.Application.Project.DTOs
 {
     public record CreateProjectInput(string ProjectName, string Description)
     {

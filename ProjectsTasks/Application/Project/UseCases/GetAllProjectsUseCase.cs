@@ -1,7 +1,8 @@
-﻿using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
+﻿using ProjectsTasks.Application.Project.DTOs;
+using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
-namespace ProjectsTasks.Application.Project
+namespace ProjectsTasks.Application.Project.UseCases
 {
     public class GetAllProjectsUseCase : NullaryUseCase<List<ProjectOutput>>
     {

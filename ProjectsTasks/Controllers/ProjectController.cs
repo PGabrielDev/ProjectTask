@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using ProjectsTasks.Application.Project;
+using ProjectsTasks.Application.Project.DTOs;
 using ProjectsTasks.Application.Services.Interfaces;
-using ProjectsTasks.Application.Task;
+using ProjectsTasks.Application.Task.DTOs;
 using ProjectsTasks.Infrastruct.Database.Exceptions;
 using System.Runtime.ConstrainedExecution;
 

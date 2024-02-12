@@ -1,6 +1,7 @@
-﻿using ProjectsTasks.Application.Project;
+﻿using ProjectsTasks.Application.Project.DTOs;
+using ProjectsTasks.Application.Project.UseCases;
 using ProjectsTasks.Application.Services.Interfaces;
-using ProjectsTasks.Application.User;
+using ProjectsTasks.Application.User.UseCases;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 using ProjectsTasks.mappers;
 
@@ -32,7 +33,7 @@ namespace ProjectsTasks.Application.Services
         {
             var user = getUserByEmailUseCase.Execute(email);
 
-            var project = Project.CreateProject.With(input.ProjectName, input.Description, user.id);
+            var project = Project.DTOs.CreateProject.With(input.ProjectName, input.Description, user.id);
             
             createProjectUseCase.Execute(project);
             

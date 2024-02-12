@@ -1,4 +1,4 @@
-﻿namespace ProjectsTasks.Application.Task
+﻿namespace ProjectsTasks.Application.Task.DTOs
 {
     public record ChangeDescription(string description, int taskId, string email)
     {

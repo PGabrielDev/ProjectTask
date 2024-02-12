@@ -2,7 +2,7 @@
 using ProjectsTasks.mappers;
 using System.Reflection.Metadata.Ecma335;
 
-namespace ProjectsTasks.Application.Task
+namespace ProjectsTasks.Application.Task.DTOs
 {
     public class GetTaskSimpleDetailsById : UseCase<int, TaskDetailOutput>
     {

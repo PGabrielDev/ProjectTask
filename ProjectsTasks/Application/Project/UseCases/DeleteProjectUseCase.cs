@@ -1,7 +1,7 @@
 ﻿using ProjectsTasks.Infrastruct.Database.entities;
 using ProjectsTasks.Infrastruct.Database.Repository.Interfaces;
 
-namespace ProjectsTasks.Application.Project
+namespace ProjectsTasks.Application.Project.UseCases
 {
     public class DeleteProjectUseCase : UnitUseCase<int>
     {
