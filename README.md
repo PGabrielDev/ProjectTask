@@ -15,6 +15,10 @@
     <li>Ao rodar esse arquivo ele irar build a imagem docker e logo apos ira rodar o docker-compose com o imagem do 
     app junto com a imagem do postgres para acesso a dados</li>
 </ol>
+<H3>1 VEZ RODANDO</H3>
+<p>Ao rodar a primeira vez um usuario com roles de ADMIN para poder tirar usar o endpoin de relatorio sera criado</p>
+<p>login: eclipse@teste.com</p>
+<p>Senha: 123321</p>
 <h3> endpoints</h3>
 <ul>
     <li>Todas as alterações que necessitam de rastreio de modificação são autenticadas</li>
@@ -79,17 +83,27 @@ assim podendo metrificar também a velocidade de completudo de uma tarefa feito 
 
 <h2>O QUE EU MELHORIA</h2>
 <p>* Criar a classe de dominio onde ficaria a regra de negocio pura para testar a aplicação independente de framework</p>
-<p>* Separa as patas de Application, Infra, Controllers... em projetos diferentes
-para evitar maior acoplamento e facilitando os teste
+<p>* Separa as pastas de Application, Infra, Controllers... em projetos diferentes
+para evitar acoplamento e facilitando os teste podendo testar cada parte isoladamente
 </p>
 <p>
     * adicionar adicionar um redis ou qualquer outro sistema de cache nas consultar de task, pois como abordagem 
 escolhida puxa todas as formas que a task teve ao longo de sua vida pode ficar um pouco pesado na primeiro carregamento
 </p>
 <p>
- * adicionar em objetos k8s de deployment para gerenciar a subida como quantidade de cpu, memoria, e a quantidade de replicas
-Services para gerencias as chamada as pods
+ * adicionar em objetos k8s como: deployment para gerenciar a implantação da api como quantidade de cpu, memoria, e a quantidade de replicas,
+Services para gerencias as chamada as pods,
 e secrets para guarda dados sensiveis como por exemplo TokenSecret, ConnectionString do banco de dados dentre outros
 </p>
 
 
+<h2>
+sobre a implementação
+</h2>
+<ul>
+    <li>UM PROJETO CONTEM UMA LISTA DE TAREFAZ</li>
+    <li>UMA TEREFA TEM UMA LISTA DE DEFINIÇÕS DE TAREFAZ</li>
+    <li>TUDO QUE FOR MUTAVEL EM UM TAREFA COMO NOME, COMENTAIOS DESCRIÇÃO... ESTÃO PRESENTES NAS DEFINIÇÕS DE TAREFAZ</li>
+    <li>SEMPRE QUE ALGO NA TAREFA (DEFINIÇÕS DE TAREFAZ) FOR ALTERADO UMA NOVA DEFINIÇÃO DE TAREFA É CRIADO E ESSA NOVA PASSA A PREVALECER</li>
+    <li>QUAL A VANTAGEM DISSO ? TEMOS O HISTORICO COMPLETO DA TEREFA E TODAS AS FAZES EM QUE ELA PASSOU PODENDO ASSIM VER COMO ELA TAVA COMPLETAMENTE EM CADA CENARIO E FAZER UM ROLLBACK DE TAREFA CASOO PRECISE</li>
+</ul>
