@@ -225,6 +225,7 @@ namespace ProjectsTasks.mappers
                 project.Id,
                 project.Name,
                 project.Description,
+                project.AuthorId,
                 project.CreatedAt,
                 project.Tasks.Select(t =>
                 {
