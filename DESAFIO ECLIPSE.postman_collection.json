@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "6f94f7dd-91af-4786-a4bb-37ceb7a89e78",
+		"name": "DESAFIO ECLIPSE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12738719"
+	},
+	"item": [
+		{
+			"name": "PROJECT",
+			"item": [
+				{
+					"name": "CREATE_PROJECT",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"projectName\": \"project teste\",\n  \"description\": \"boa description\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL PROJECTS",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GERAR RELATORIO",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/generateReport",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"generateReport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PEGAR TODOS OS PROJETOS DE UM USUARIO",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR UM PROJETO",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CRIAR UMA NOVA TAREFA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"priority\": 0,\n  \"name\": \"string\",\n  \"description\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/1/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"1",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADICIONAR UMA TASK A UM PROJETO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"comment\": \"COMENTARIO ADICIONADO 123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/task/1/addComment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"task",
+								"1",
+								"addComment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MUDAR O STATUS DE UMA TAREFA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/task/1/changeStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"task",
+								"1",
+								"changeStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MUDADO DESCRIÇÃO DA TAREFA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Mudando descrição da tarefa\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/task/1/changeDescription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"task",
+								"1",
+								"changeDescription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ATRIBUINDO UMA TAREFA A UM USUARIO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"assinedId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/task/1/addAssined",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"task",
+								"1",
+								"addAssined"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MUDA NOME DE TAREFA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"mUDANDO NOME DA TASK\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/task/1/changeName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"task",
+								"1",
+								"changeName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETA UMA TAREFA",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/Project/task/99",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Project",
+								"task",
+								"99"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PEGAR O UMA TEREFA PELO COM ID COM HISTORICO SIMPLES",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PEGA UMA TEREFA PELO ID COM HISTORICO COMPLETO",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/task/1/historicComplete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"task",
+								"1",
+								"historicComplete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "CREATE USER",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"gabriel@gmail.com\",\n  \"email\": \"gabriel@gmail.com\",\n  \"password\": \"123321\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5198/api/v1/User",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5198",
+							"path": [
+								"api",
+								"v1",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dasdasdasda"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"testeeasdsa@gmail.com\",\n  \"password\": \"123321\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/User/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"User",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
