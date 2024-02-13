@@ -36,7 +36,7 @@ namespace ProjectsTasks.Infrastruct.Database.Repository
             return _context.Users
                 .Include(us => us.Roles)
                 .ThenInclude(r => r.Role)
-                .First(us => us.Email == email);
+                .FirstOrDefault(us => us.Email == email);
         }
 
         public User? GetById(int id)
