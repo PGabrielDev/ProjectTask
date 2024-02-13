@@ -15,6 +15,55 @@
     <li>Ao rodar esse arquivo ele irar build a imagem docker e logo apos ira rodar o docker-compose com o imagem do 
     app junto com a imagem do postgres para acesso a dados</li>
 </ol>
+<h3> endpoints</h3>
+<ul>
+    <li>Todas as alterações que necessitam de rastreio de modificação são autenticadas</li>
+    entre eles são: 
+    <ol>
+        <li>
+    host/api/v1/Project (POST) para criação de um novo projeto
+        </li>
+        <li>
+    host/api/v1/Project/generateReport (GET) gera um relatorio da media de tarefaz feitas pro usuario em 30 dias (APENAS ADMIN PODEM ACESSAR ESSA ROTA)
+        </li>
+        <li>
+    host/api/v1/Project (DELETE) gera um relatorio da media de tarefaz feitas pro usuario em 30 dias (APENAS ADMIN PODEM ACESSAR ESSA ROTA)
+        </li>
+        <li>
+    host/api/v1/Project/{projectId}/task (POST) CRIA UMA NOVA TAREFA
+        </li>
+        <li>
+    host/api/v1/Project/task/{taskId}/addComment (POST) ADICIONA UM COMENTARIO A UMA TAREFA
+        </li>
+        <li>
+    host/api/v1/Project/task/{taskId}/changeStatus (POST) ALTERA O STATUS DA TAREFA
+        </li>
+        <li>
+    host/api/v1/Project/task/{taskId}/changeDescription (POST) ALTERA A DESCRIÇÃO DA TAREFA
+        </li>
+        <li>
+    host/api/v1/Project/task/{taskId}/addAssined (POST) ALTERA O RESPONSAVEL PELA TAREFA
+        </li>
+        <li>
+    host/api/v1/Project/task/{taskId}/changeName (POST) MUDA O NOME DE UMA TAREFA
+        </li>
+        <li>
+    host/api/v1/Project/task/{taskId} (DELETE) DELETA UMA TAREFA
+        </li>
+ </ol>
+
+<li>Os que não precisam de altenticação</li>
+<ol>
+    <li>host/api/v1/Project/task/{projectId} (GET) PEGA DETALHES DE UM TASK INCLUINDO SEU HISTORICO SIMPLES</li>
+    <li>host/api/v1/Project/task/{projectId}/historicComplete (GET) PEGA DETALHES DE UM TASK INCLUINDO SEU HISTORICO COMPLETO</li>
+    <li>host/api/v1/Project (GET) PEGA TODOS OS PROJETOS E SUaS TASK SEM HISTORICO</li>
+    <li>host/api/v1/Project/{userId} (GET) PEGA TODOS OS PROJETOS DE UM USUARIO E SUaS TASK SEM HISTORICO</li>
+</ol>
+
+
+
+</ul>
+
 
 
 <h2>Futuros refinamentos</h2>
@@ -28,7 +77,8 @@ assim podendo metrificar também a velocidade de completudo de uma tarefa feito 
 <p>* Adicionar Marcações de usuarios </p>
 
 
-<h2>OQUE EU MELHORIA</h2>
+<h2>O QUE EU MELHORIA</h2>
+<p>* Criar a classe de dominio onde ficaria a regra de negocio pura para testar a aplicação independente de framework</p>
 <p>* Separa as patas de Application, Infra, Controllers... em projetos diferentes
 para evitar maior acoplamento e facilitando os teste
 </p>
