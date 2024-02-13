@@ -6,7 +6,6 @@ using ProjectsTasks.Application.Project.UseCases;
 using ProjectsTasks.Application.Role.UseCases;
 using ProjectsTasks.Application.Services;
 using ProjectsTasks.Application.Services.Interfaces;
-using ProjectsTasks.Application.Task.DTOs;
 using ProjectsTasks.Application.Task.UseCases;
 using ProjectsTasks.Application.User.UseCases;
 using ProjectsTasks.Infrastruct.Database.DataAccess;
