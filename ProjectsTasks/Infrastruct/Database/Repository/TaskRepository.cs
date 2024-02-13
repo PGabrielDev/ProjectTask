@@ -43,7 +43,15 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
             .Include(t => t.TaskDefinitions)
             .ThenInclude(t => t.Assined)
             .Where(t => t.TaskDefinitions.Any(td => td.Stats == Status.DONE && td.createdAt >= DateTime.Now.ToUniversalTime().AddDays(-30) && td.AssinedId != null && td.AssinedId != 0))
-            .ToList();
+            .Select( t => new entities.Task
+            {
+                    Id = t.Id,
+                    CreatedAt = t.CreatedAt,
+                    Priority = t.Priority,
+                    ProjectId = t.ProjectId,
+                    UpdatedAt = t.UpdatedAt,
+                    TaskDefinitions = t.TaskDefinitions.Where(td => td.Stats == Status.DONE && td.createdAt >= DateTime.Now.ToUniversalTime().AddDays(-30) && td.AssinedId != null && td.AssinedId != 0).ToList(),
+            }).ToList();
             return result;
         }
 
