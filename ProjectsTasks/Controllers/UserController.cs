@@ -29,7 +29,7 @@ namespace ProjectsTasks.Controllers
             var output = _userService.Login(input);
             if (output == null)
             {
-                return BadRequest("Login fail");
+                return BadRequest( new { error = "User or password incorrect" });
             }
             return Ok(output);
         }
