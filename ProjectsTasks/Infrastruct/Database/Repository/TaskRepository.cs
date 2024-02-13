@@ -67,6 +67,10 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
             var project = _context.Projects
                 .Include(p => p.Tasks)
                 .FirstOrDefault(p => p.Id == value.ProjectId);
+            if (project == null)
+            {
+                throw new NotFoundException("Project");
+            }
 
             if (project.Tasks.Count() >= 20)
             {

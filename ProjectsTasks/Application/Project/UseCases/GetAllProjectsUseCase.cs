@@ -4,7 +4,7 @@ using ProjectsTasks.mappers;
 
 namespace ProjectsTasks.Application.Project.UseCases
 {
-    public class GetAllProjectsUseCase : NullaryUseCase<List<ProjectOutput>>
+    public class GetAllProjectsUseCase : NullaryUseCase<ICollection<ProjectOutput>>
     {
         private readonly IProjectRepository _repository;
 
@@ -13,7 +13,7 @@ namespace ProjectsTasks.Application.Project.UseCases
             _repository = repository;
         }
 
-        public List<ProjectOutput> Execute()
+        public ICollection<ProjectOutput> Execute()
         {
             var projects = _repository.GetAll();
             return projects.Select(Mappers.FromProject).ToList();

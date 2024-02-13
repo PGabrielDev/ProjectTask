@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +21,21 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\User\DTOs\" />
+    <Folder Include="Application\User\UseCases\" />
+    <Folder Include="Application\Role\DTOs\" />
+    <Folder Include="Application\Role\UseCases\" />
+    <Folder Include="Application\Services\DTOs\" />
+    <Folder Include="Application\Services\UseCases\" />
+    <Folder Include="Application\Task\DTOs\" />
+    <Folder Include="Application\Task\UseCases\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectsTasks\ProjectsTasks.csproj" />
   </ItemGroup>
 
 </Project>

@@ -92,6 +92,8 @@ namespace ProjectsTasks.Controllers
             }
             catch (LimitTaskException ex) {
                 return BadRequest(new {error = ex.Message});
+            } catch (NotFoundException ex) {
+                return NotFound(new {error = ex.Message});
             }
             
         }
@@ -100,26 +102,37 @@ namespace ProjectsTasks.Controllers
         [Authorize(Roles = "USER")]
         public IActionResult AddCommentProjectTask([FromRoute] int taskId, [FromBody] AddCommentInput input)
         {
-            var email = User?.Identity?.Name;
-            if (email == null)
+            try
             {
-                return BadRequest();
+                var email = User?.Identity?.Name;
+                if (email == null)
+                {
+                    return BadRequest();
+                }
+                _taskService.AddComment(input, taskId, email);
+                return NoContent();
+            }catch (NotFoundException ex) {
+                return NotFound(new {error = ex.Message});
             }
-            _taskService.AddComment(input, taskId, email);
-            return NoContent();
         }
 
         [HttpPost("task/{taskId}/changeStatus")]
         [Authorize(Roles = "USER")]
         public IActionResult ChangeStatus([FromRoute] int taskId ,[FromBody] ChangeStatusInput input) 
         {
-            var email = User?.Identity?.Name;
-            if (email == null)
+            try
             {
-                return BadRequest();
+                var email = User?.Identity?.Name;
+                if (email == null)
+                {
+                    return BadRequest();
+                }
+                _taskService.ChangeStatusTask(taskId, input,email);
+                return NoContent();
+            } catch (NotFoundException ex)
+            {
+                return NotFound(new {error = ex.Message});
             }
-            _taskService.ChangeStatusTask(taskId, input,email);
-            return NoContent();
         }
 
         [HttpPost("task/{taskId}/changeDescription")]
@@ -127,25 +140,39 @@ namespace ProjectsTasks.Controllers
 
         public IActionResult ChangeDescription([FromRoute] int taskId, [FromBody] ChangeDescriptionInput input)
         {
-            var email = User?.Identity?.Name;
-            if (email == null)
+            try
             {
-                return BadRequest();
+
+                var email = User?.Identity?.Name;
+                if (email == null)
+                {
+                    return BadRequest();
+                }
+                _taskService.ChangeDescription(taskId, input, email);
+                return NoContent();
+            }catch(NotFoundException ex)
+            {
+                return NotFound(new {error = ex.Message});
             }
-            _taskService.ChangeDescription(taskId, input, email);
-            return NoContent();
         }
         [HttpPost("task/{taskId}/addAssined")]
         [Authorize(Roles = "USER")]
         public IActionResult ChangeAssined([FromRoute] int taskId, [FromBody] ChangeAssinedTaskInput input)
         {
-            var email = User?.Identity?.Name;
-            if (email == null)
+            try
             {
-                return BadRequest();
+
+                var email = User?.Identity?.Name;
+                if (email == null)
+                {
+                    return BadRequest();
+                }
+                _taskService.ChangeAssinedTask(taskId, input, email);
+                return NoContent();
+            } catch(NotFoundException ex)
+            {
+                return NotFound(new {error = ex.Message});
             }
-            _taskService.ChangeAssinedTask(taskId, input, email);
-            return NoContent();
         }
 
         [HttpPost("task/{taskId}/changeName")]
@@ -153,13 +180,20 @@ namespace ProjectsTasks.Controllers
 
         public IActionResult ChangeName([FromRoute] int taskId, [FromBody] ChangeNameInput input)
         {
-            var email = User?.Identity?.Name;
-            if (email == null)
+            try
             {
-                return BadRequest();
+
+                var email = User?.Identity?.Name;
+                if (email == null)
+                {
+                    return BadRequest();
+                }
+                _taskService.ChangeNameTask(taskId, input,email);
+                return NoContent();
+            }catch (NotFoundException ex)
+            {
+                return NotFound(new {error = ex.Message});
             }
-            _taskService.ChangeNameTask(taskId, input,email);
-            return NoContent();
         }
 
         [HttpDelete("task/{taskId}")]
