@@ -112,8 +112,24 @@ O que são as "Definições de tarefa"? Elas representam o espelho de uma tarefa
 
 O aplicativo foi desenvolvido utilizando casos de uso e uma camada de serviços para orquestrar a chamada aos casos de uso.
 
-As tarefas possuem 3 prioridades: 0 (baixa), 1 (média), 3 (alta). Essas informações são associadas às tarefas, não às definições, portanto, não podem ser modificadas. As tarefas também têm 3 status: 0 (backlog ou a fazer), 1 (em andamento/in progress), 2 (concluído/done). É possível adicionar comentários às tarefas, sendo que cada comentário cria uma nova definição de tarefa.
+As tarefas possuem 3 prioridades: 0 (baixa), 1 (média), 3 (alta). Essas informações são associadas às tarefas, não às definições, portanto, não podem ser modificadas.
+As tarefas também têm 3 status: 0 (backlog ou a fazer), 1 (em andamento/in progress), 2 (concluído/done).
+É possível adicionar comentários às tarefas, sendo que cada comentário cria uma nova definição de tarefa.
 
-Cada projeto pode ter no máximo 20 tarefas. Não é permitido exceder esse limite. A exclusão de um projeto só é possível se todas as tarefas relacionadas a ele estiverem com o status = 2 (DONE).
+Cada projeto pode ter no máximo 20 tarefas. Não é permitido exceder esse limite.
+A exclusão de um projeto só é possível se todas as tarefas relacionadas a ele estiverem com o status = 2 (DONE).
 
 É possível gerar um relatório da média de tarefas finalizadas, mas apenas ADMINS PODEM ACESSAR ESSA ROTA. Quando o aplicativo é iniciado pela primeira vez, ele cria o usuário Admin com login: eclipse@teste.com e senha: 123321.
+
+É possível listar todas as todos os projetos e todos os projetos de um usuario
+
+É possível verificar a tarefa é sua detalhes(definições de tarefaz) existem um endpoint para listar apenas a ultima defnição disponivel com um historico e um para listar a
+com a historico mais todas as definções de tarefaz disponiveis
+
+Todos os endpoints que modificam algo são autenticados para rastrear quem fez a modificação. Pode usar o usuário criado pelo próprio aplicativo com a função de Admin ou criar outro pelo endpoint de cadastro. Os endpoints autenticados são os seguintes:
+
+
+
+
+
+
