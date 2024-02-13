@@ -103,10 +103,17 @@ e secrets para guarda dados sensiveis como por exemplo TokenSecret, ConnectionSt
 <h2>
 sobre a implementação
 </h2>
-<ul>
-    <li>UM PROJETO CONTEM UMA LISTA DE TAREFAZ</li>
-    <li>UMA TEREFA TEM UMA LISTA DE DEFINIÇÕS DE TAREFAZ</li>
-    <li>TUDO QUE FOR MUTAVEL EM UM TAREFA COMO NOME, COMENTAIOS DESCRIÇÃO... ESTÃO PRESENTES NAS DEFINIÇÕS DE TAREFAZ</li>
-    <li>SEMPRE QUE ALGO NA TAREFA (DEFINIÇÕS DE TAREFAZ) FOR ALTERADO UMA NOVA DEFINIÇÃO DE TAREFA É CRIADO E ESSA NOVA PASSA A PREVALECER</li>
-    <li>QUAL A VANTAGEM DISSO ? TEMOS O HISTORICO COMPLETO DA TEREFA E TODAS AS FAZES EM QUE ELA PASSOU PODENDO ASSIM VER COMO ELA TAVA COMPLETAMENTE EM CADA CENARIO E FAZER UM ROLLBACK DE TAREFA CASOO PRECISE</li>
-</ul>
+
+Resumo sobre a solução
+
+O projeto foi Batizado de ProjectTask. No ProjectTask, temos a entidade "projeto", que possui uma relação de 1 para N com as "tarefas". Ou seja, um projeto pode ter várias tarefas, e as tarefas têm uma relação de 1 para N com as "Definições de tarefa".
+
+O que são as "Definições de tarefa"? Elas representam o espelho de uma tarefa. Tudo que é mutável em uma tarefa, como nome, descrição, alteração do status, está contido nas definições de tarefas. Sempre que uma tarefa é alterada, uma nova definição de tarefa é criada com base na anterior, modificando apenas o necessário. Dessa forma, mantemos a definição anterior e a nova definição que sera visível na hora de listar as tarefas, preservando um histórico completo.
+
+O aplicativo foi desenvolvido utilizando casos de uso e uma camada de serviços para orquestrar a chamada aos casos de uso.
+
+As tarefas possuem 3 prioridades: 0 (baixa), 1 (média), 3 (alta). Essas informações são associadas às tarefas, não às definições, portanto, não podem ser modificadas. As tarefas também têm 3 status: 0 (backlog ou a fazer), 1 (em andamento/in progress), 2 (concluído/done). É possível adicionar comentários às tarefas, sendo que cada comentário cria uma nova definição de tarefa.
+
+Cada projeto pode ter no máximo 20 tarefas. Não é permitido exceder esse limite. A exclusão de um projeto só é possível se todas as tarefas relacionadas a ele estiverem com o status = 2 (DONE).
+
+É possível gerar um relatório da média de tarefas finalizadas, mas apenas ADMINS PODEM ACESSAR ESSA ROTA. Quando o aplicativo é iniciado pela primeira vez, ele cria o usuário Admin com login: eclipse@teste.com e senha: 123321.
