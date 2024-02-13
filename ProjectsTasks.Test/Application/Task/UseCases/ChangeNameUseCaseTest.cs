@@ -27,7 +27,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
             {
                 new TaskDefinition
                 {
-                    Assined = new User {},
+                    Assined = new Infrastruct.Database.entities.User {},
                     ChangeDescription = "Test",
                     Comments = new List<Comment> {},
                     AssinedId = 1,
@@ -45,7 +45,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
         }
 
         [Fact]
-        public void GivenAValidParameterAndListTaskNotCompletesWhenCallExecuteThenReturnsSuccess()
+        public void GivenAValidParameterWhenCallExecuteThenUpdateMethodMusBeCalled()
         {
             var changeName = ChangeName.With(1, "Criar calculo de oferta para a via npc", "matias@teste.com");
             

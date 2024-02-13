@@ -24,14 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\User\DTOs\" />
-    <Folder Include="Application\User\UseCases\" />
-    <Folder Include="Application\Role\UseCases\" />
-    <Folder Include="Application\Services\DTOs\" />
-    <Folder Include="Application\Services\UseCases\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ProjectsTasks\ProjectsTasks.csproj" />
   </ItemGroup>
 

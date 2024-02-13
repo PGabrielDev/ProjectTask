@@ -27,7 +27,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
             {
                 new TaskDefinition
                 {
-                    Assined = new User {},
+                    Assined = new Infrastruct.Database.entities.User {},
                     ChangeDescription = "Test",
                     Comments = new List<Comment> {},
                     AssinedId = 1,
@@ -45,7 +45,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
         }
 
         [Fact]
-        public void GivenAValidParameterAndListTaskNotCompletesWhenCallExecuteThenReturnsSuccess()
+        public void GivenAValidParameterWhenCallExecuteThenUpdateMethodMusBeCalled()
         {
             var comment = AddComment.With(1, "Pra quando ?", 1, "matias@teste.com");
             useCase.Execute(comment);

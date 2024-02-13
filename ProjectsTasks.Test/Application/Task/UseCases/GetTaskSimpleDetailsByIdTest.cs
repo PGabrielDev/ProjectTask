@@ -30,7 +30,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
                         {
                             new TaskDefinition
                             {
-                                Assined = new User {},
+                                Assined = new Infrastruct.Database.entities.User {},
                                 ChangeDescription = "Tarefa inicianda: em 24/10/2025; por matias@gmail.com",
                                 Comments = new List<Comment> {},
                                 AssinedId = 1,
@@ -51,7 +51,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
         }
 
         [Fact]
-        public void GivenAValidParameterAndListTaskNotCompletesWhenCallExecuteThenReturnsSuccess()
+        public void GivenAValidParameterWhenCallExecuteThenGeByIdMethodReturnsTaskHistoricSimple()
         {
             
             int taskid = 1;

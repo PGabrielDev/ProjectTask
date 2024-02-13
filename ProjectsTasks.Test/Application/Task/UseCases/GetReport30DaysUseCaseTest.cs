@@ -32,7 +32,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
                         {
                             new TaskDefinition
                             {
-                                Assined = new User {
+                                Assined = new Infrastruct.Database.entities.User {
                                     Id = 1,
                                     Email = "matias@teste.com",
                                     Name = "matias",
@@ -58,7 +58,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
         }
 
         [Fact]
-        public void GivenAValidParameterAndListTaskNotCompletesWhenCallExecuteThenReturnsSuccess()
+        public void GivenAValidParameterWhenCallExecuteThenReturnListAvarage()
         {
 
             var result = useCase.Execute();

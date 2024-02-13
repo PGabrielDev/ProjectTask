@@ -26,7 +26,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
         }
 
         [Fact]
-        public void GivenAValidParameterAndListTaskNotCompletesWhenCallExecuteThenReturnsSuccess()
+        public void GivenAValidParameterWhenCallExecuteThenGeByIdMethodReturnsTaskHistoric()
         {
             var input = 1;
             var result = useCase.Execute(input);

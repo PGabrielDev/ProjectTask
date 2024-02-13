@@ -26,7 +26,7 @@ namespace ProjectsTasks.Test.Application.Task.UseCases
         }
 
         [Fact]
-        public void GivenAValidParameterAndListTaskNotCompletesWhenCallExecuteThenReturnsSuccess()
+        public void GivenAValidParameterWhenCallExecuteThenUpdateMethodMusBeCalled()
         {
             var creatTask = CreateTask.With(1,2,"Task","descrição", "teste@teste.com");
             useCase.Execute(creatTask);
