@@ -6,7 +6,7 @@ namespace ProjectsTasks.Application.Services.Interfaces
     public interface ITaskService
     {
         public void CreateTask(CreateTask input);
-        public void AddComment(AddCommentInput comment, int projectId, int taskId, string email);
+        public void AddComment(AddCommentInput comment, int taskId, string email);
 
         public void ChangeStatusTask(int taskId, ChangeStatusInput input, string email = "");
 

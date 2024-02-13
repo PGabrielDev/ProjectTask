@@ -96,16 +96,16 @@ namespace ProjectsTasks.Controllers
             
         }
 
-        [HttpPost("{projectId}/task/{taskId}/addComment")]
+        [HttpPost("task/{taskId}/addComment")]
         [Authorize(Roles = "USER")]
-        public IActionResult AddCommentProjectTask([FromRoute] int projectId, [FromRoute] int taskId, [FromBody] AddCommentInput input)
+        public IActionResult AddCommentProjectTask([FromRoute] int taskId, [FromBody] AddCommentInput input)
         {
             var email = User?.Identity?.Name;
             if (email == null)
             {
                 return BadRequest();
             }
-            _taskService.AddComment(input, projectId, taskId, email);
+            _taskService.AddComment(input, taskId, email);
             return NoContent();
         }
 
@@ -173,15 +173,30 @@ namespace ProjectsTasks.Controllers
         [HttpGet("/task/{taskId}/historicComplete")]
         public IActionResult GetHistoricComplete([FromRoute] int taskId)
         {
-            var result = _taskService.GetTaskByIdCompleteHistoric(taskId);
-            return Ok(result);
+            try
+            {
+                var result = _taskService.GetTaskByIdCompleteHistoric(taskId);
+                return Ok(result);
+            }
+            catch (NotFoundException ex) {
+                return NotFound(new {error = ex.Message});
+            }
+            
+            
         }
 
         [HttpGet("/task/{taskId}")]
         public IActionResult GetTaskById([FromRoute] int taskId)
         {
-            var result = _taskService.GetTaskByIdDetails(taskId);
-            return Ok(result);
+            try
+            {
+                var result = _taskService.GetTaskByIdDetails(taskId);
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
         }
     }
 }

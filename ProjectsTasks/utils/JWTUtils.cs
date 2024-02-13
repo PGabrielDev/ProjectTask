@@ -31,7 +31,7 @@ namespace ProjectsTasks.utils
                 Issuer = _configuration["TokenSettings:Issuer"],
                 Subject = GenerateClaims(user),
                 SigningCredentials = credentials,
-                Expires = DateTime.UtcNow.AddHours(2)
+                Expires = DateTime.UtcNow.AddHours(168)
             };
 
             var token = handler.CreateToken(tokenDescriptor);

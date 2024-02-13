@@ -45,10 +45,10 @@ namespace ProjectsTasks.Application.Services
             this.getReport30DaysUseCase = getReport30DaysUseCase;
         }
 
-        public void AddComment(AddCommentInput comment, int projectId, int taskId, string email)
+        public void AddComment(AddCommentInput comment, int taskId, string email)
         {
             var user = getUserByEmailUseCase.Execute(email);
-            var commentAdd = Task.DTOs.AddComment.With(projectId, taskId, comment.comment,user.id, email);
+            var commentAdd = Task.DTOs.AddComment.With( taskId, comment.comment,user.id, email);
             addCommentUseCase.Execute(commentAdd);
         }
 

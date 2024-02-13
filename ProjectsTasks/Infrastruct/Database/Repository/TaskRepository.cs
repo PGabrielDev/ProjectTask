@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using ProjectsTasks.Infrastruct.Database.DataAccess;
 using ProjectsTasks.Infrastruct.Database.entities;
+using ProjectsTasks.Infrastruct.Database.Exceptions;
 using System.Data;
 using System.Threading.Tasks;
 
@@ -55,6 +56,10 @@ namespace ProjectsTasks.Infrastruct.Database.Repository.Interfaces
                     .ThenInclude(tf => tf.Comments)
 
                 .FirstOrDefault(t => t.Id == id);
+            if (result == null)
+            {
+                throw new NotFoundException("Tarefa");
+            }
             return result;
         }
         public entities.Task Save(entities.Task value)
