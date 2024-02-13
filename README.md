@@ -19,6 +19,7 @@
 <p>Ao rodar a primeira vez um usuario com roles de ADMIN para poder tirar usar o endpoin de relatorio sera criado</p>
 <p>login: eclipse@teste.com</p>
 <p>Senha: 123321</p>
+<p>Na raiz do projeto tem o projeto DESAFIO ECLIPSE.postman_collection.json para import as collections no postman e testar o projeto</p>
 <h3> endpoints</h3>
 <ul>
     <li>Todas as alterações que necessitam de rastreio de modificação são autenticadas</li>
@@ -62,6 +63,8 @@
     <li>host/api/v1/Project/task/{projectId}/historicComplete (GET) PEGA DETALHES DE UM TASK INCLUINDO SEU HISTORICO COMPLETO</li>
     <li>host/api/v1/Project (GET) PEGA TODOS OS PROJETOS E SUaS TASK SEM HISTORICO</li>
     <li>host/api/v1/Project/{userId} (GET) PEGA TODOS OS PROJETOS DE UM USUARIO E SUaS TASK SEM HISTORICO</li>
+    <li>host/api/v1/User/ (POST) CADASTRA UM NOVO USUARIO COM FUNÇÃO DE USUARIO</li>
+    <li>host/api/v1/User/login (POST) FAZ O LOGIN PARA O OBETER O TOKEN DE ACESSO</li>
 </ol>
 
 

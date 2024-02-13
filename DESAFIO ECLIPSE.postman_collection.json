@@ -515,15 +515,15 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"gabriel@gmail.com\",\n  \"email\": \"gabriel@gmail.com\",\n  \"password\": \"123321\"\n}"
+							"raw": "{\n  \"name\": \"gabriell@gmail.com\",\n  \"email\": \"testee@gmail.com\",\n  \"password\": \"123321\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:5198/api/v1/User",
+							"raw": "http://localhost:8000/api/v1/User",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "5198",
+							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -544,7 +544,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer dasdasdasda"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImVjbGlwc2VAdGVzdGUuY29tIiwicm9sZSI6WyJBRE1JTiIsIlVTRVIiXSwibmJmIjoxNzA3ODE5NjM4LCJleHAiOjE3MDg0MjQ0MzgsImlhdCI6MTcwNzgxOTYzOCwiaXNzIjoiSXNzdWVyIiwiYXVkIjoiQXVkaWVuY2UifQ.dLuHFajYzfnbPeM3smB1cb_JuYxGzwKXMhLbONFN4Q4"
 							},
 							{
 								"key": "Content-Type",
@@ -553,7 +553,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"email\": \"testeeasdsa@gmail.com\",\n  \"password\": \"123321\"\n}"
+							"raw": "{\n  \"email\": \"testee@gmail.com\",\n  \"password\": \"12d3321\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/v1/User/login",
